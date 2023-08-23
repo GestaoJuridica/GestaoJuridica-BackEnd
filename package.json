@@ -6,7 +6,7 @@
   "author": "FelipeFernandes777 <felipe524.fernades@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start:dev": "tsx server.ts",
+    "start:dev": "tsx watch server.ts",
     "start:build": "tsup"
   },
   "dependencies": {

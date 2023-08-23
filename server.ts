@@ -1,4 +1,4 @@
-import { app } from 'app';
+import { app } from 'src/app';
 
 const port: number | undefined = 3333 || process.env.PORT;
 
