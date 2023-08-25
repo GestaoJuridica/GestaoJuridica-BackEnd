@@ -6,6 +6,36 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  userName String
+  password String
+  email    String @unique
+
+  @@map("users")
+}
+
+model Clients {
+  id String @id @default(uuid())
+
+  name       String
+  cpf        String
+  cellNumber Int
+  logadouro  String
+  photos     String
+
+  @@map("clients")
+}
+
+model CourtProcess {
+  id Int @id @default(autoincrement())
+
+  courtType String
+
+  @@map("courtProcess")
 }
