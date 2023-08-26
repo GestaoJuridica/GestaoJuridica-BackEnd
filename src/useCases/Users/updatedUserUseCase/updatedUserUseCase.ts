@@ -1,5 +1,5 @@
 import { dataBase } from 'dataBase/dataBase';
-import { UpdatedUserUseCaseProps } from 'interfaces/useCases/updatedUserUseCase';
+import { UpdatedUserUseCaseProps } from 'interfaces/useCases/users/updatedUserUseCase';
 
 class UpdatedUserUseCase implements UpdatedUserUseCaseProps {
 	public async updateduser(id: string, userName: string): Promise<unknown> {

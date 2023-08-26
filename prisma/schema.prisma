@@ -17,6 +17,8 @@ model User {
   password String
   email    String @unique
 
+  clients Clients[]
+
   @@map("users")
 }
 
@@ -25,9 +27,12 @@ model Clients {
 
   name       String
   cpf        String
-  cellNumber Int
+  cellNumber String
   logadouro  String
   photos     String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 
   @@map("clients")
 }
