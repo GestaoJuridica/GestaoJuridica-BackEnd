@@ -1,6 +1,7 @@
 import { Response, Request } from 'express';
 import { GetUserUseCase } from './getUSerUseCase';
 import { dataBase } from 'dataBase/dataBase';
+import { z } from 'zod';
 
 class GetUSerController {
 	private async getAllUser(request: Request, response: Response) {

@@ -19,6 +19,9 @@ model User {
 
   clients Clients[]
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@map("users")
 }
 
@@ -34,6 +37,9 @@ model Clients {
   user   User   @relation(fields: [userId], references: [id])
   userId String
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@map("clients")
 }
 
@@ -41,6 +47,9 @@ model CourtProcess {
   id Int @id @default(autoincrement())
 
   courtType String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("courtProcess")
 }
