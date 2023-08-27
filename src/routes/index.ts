@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createdUser } from './User/createUserRouter.routes';
+import { userRoutes } from './User/userRoutes.routes';
 
 const routes = Router();
 
@@ -9,6 +9,6 @@ routes.get('/', (_, res) => {
 	});
 });
 
-routes.use(createdUser);
+routes.use('/user', userRoutes);
 
 export { routes };
