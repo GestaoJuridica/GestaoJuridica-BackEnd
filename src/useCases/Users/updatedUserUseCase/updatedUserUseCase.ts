@@ -1,4 +1,5 @@
 import { dataBase } from 'dataBase/dataBase';
+import { UpdatedUserUseCaseProps } from 'interfaces/useCases/users/updatedUserUseCase';
 import { UpdatedUserUseCaseProps } from 'interfaces/useCases/updatedUserUseCase';
 
 class UpdatedUserUseCase implements UpdatedUserUseCaseProps {

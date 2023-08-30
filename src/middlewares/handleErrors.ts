@@ -7,5 +7,6 @@ export function handleError({ req, res, error, next }: handleErrorsProps) {
 		});
 		return error;
 	}
+
 	next();
 }

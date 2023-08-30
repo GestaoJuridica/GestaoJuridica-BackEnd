@@ -17,6 +17,11 @@ model User {
   password String
   email    String @unique
 
+  clients Clients[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@map("users")
 }
 
@@ -25,9 +30,15 @@ model Clients {
 
   name       String
   cpf        String
-  cellNumber Int
+  cellNumber String
   logadouro  String
   photos     String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("clients")
 }
@@ -36,6 +47,9 @@ model CourtProcess {
   id Int @id @default(autoincrement())
 
   courtType String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("courtProcess")
 }
