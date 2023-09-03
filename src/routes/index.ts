@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { userRoutes } from './userRoutes.routes';
 import { clientsRouter } from './clientsRouter.routes';
-import { userRoutes } from './User/userRoutes.routes';
+import { authenticated } from 'middlewares/ensureAuthenticated';
 
 const routes = Router();
 
@@ -12,6 +12,6 @@ routes.get('/', (_, res) => {
 });
 
 routes.use('/user', userRoutes);
-routes.use('/client', clientsRouter);
+routes.use('/client', authenticated , clientsRouter);
 
 export { routes };
