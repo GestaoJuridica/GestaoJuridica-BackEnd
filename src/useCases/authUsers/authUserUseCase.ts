@@ -4,10 +4,10 @@ import { GenerateToken } from "providers/generateToken";
 
 
 class AuthUserUseCase {
-    private async execute(userName: string, password: string): Promise<string> {
+    private async execute(email: string, password: string): Promise<string> {
         const userAlreadyExists = await dataBase.user.findFirst({
             where: {
-                userName: userName,
+                email: email,
             }
         })
 
@@ -25,7 +25,7 @@ class AuthUserUseCase {
         console.log({ userId: userAlreadyExists.id })
 
         const token = await generateTokenProvider.generateToken();
-
+        
         return token;
     }
 
