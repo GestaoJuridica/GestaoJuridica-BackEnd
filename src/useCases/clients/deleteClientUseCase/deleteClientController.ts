@@ -4,10 +4,11 @@ import { DeleteClientUseCase } from './deleteClientUseCase';
 class DeleteClientController {
 	private async deleteUser(request: Request, response: Response) {
 		try {
-			const { id } = request.params;
+			const { userId } = request.body
+			const { id } = request.body;
 
 			const deleteClientUseCase = new DeleteClientUseCase();
-			await deleteClientUseCase.deleteClient(id);
+			await deleteClientUseCase.deleteClient(id, userId);
 
 			if (!id) {
 				response.status(400).send({

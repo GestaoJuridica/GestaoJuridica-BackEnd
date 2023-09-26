@@ -1,6 +1,5 @@
 import { dataBase } from 'dataBase/dataBase';
 import { User } from '@prisma/client';
-import { GetUSerUseCaseProps } from 'interfaces/useCases/users/GetUSerUseCaseProps';
 
 import { GetUSerUseCaseProps } from 'interfaces/useCases/GetUSerUseCaseProps';
 

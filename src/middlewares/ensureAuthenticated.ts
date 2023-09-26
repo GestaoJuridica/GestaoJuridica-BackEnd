@@ -1,37 +1,40 @@
 import { Request, Response, NextFunction } from 'express';
-import { z } from 'zod';
 import { verify } from 'jsonwebtoken';
 
-function authenticated(request:Request, response:Response, next:NextFunction) {
-
-    const authTokenType = z.object({
-        bearer: z.any(),
-        token: z.string(),
-    })
-
+async function authenticated(request: Request, response: Response, next: NextFunction) {
     const authToken = request.headers.authorization;
-    const { bearer, token } = authTokenType.parse(authToken?.split(" ")); 
 
-    if (!authToken) {
-        response.status(400).send({
-            message: 'Token not found',
-            status: 'alert'
-        })
+
+    if (authToken) {
+        const [bearer, token] = authToken.split(" ")
+
+        if (!authToken) {
+            response.status(400).send({
+                message: 'Token not found',
+                status: 'alert'
+            })
+        }
+
+        if (!authToken) {
+
+        }
+        try {
+
+            const secretKey: string | undefined = process.env.SECRET_KEY
+
+            if (!secretKey) {
+                throw new Error('Secret key not found');
+            }
+
+            verify(token, String(secretKey));
+
+            next();
+        } catch (error) {
+            response.status(500).send({
+                message: 'Failed to authenticated user',
+                status: 'error'
+            })
+        }
     }
-
-    try {
-        const secretKey:string | undefined = process.env.SECRET_KEY
-
-        verify(token, String(secretKey));
-        next();
-    } catch (error) {
-        response.status(500).send({
-            message: 'Internal Server Error',
-            status: 'error'
-        })
-    }
-
-
 }
-
 export { authenticated };

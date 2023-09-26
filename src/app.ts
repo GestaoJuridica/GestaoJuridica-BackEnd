@@ -4,8 +4,7 @@ import bodyParser from 'body-parser';
 import express, { Application, response } from 'express';
 import { routes } from '@routes';
 import dotenv from 'dotenv';
-import { handleError } from 'middlewares/handleErrors';
-import { handleErrorsProps } from 'interfaces/handleErrors';
+import cors from 'cors'
 
 //Use DotEnv
 dotenv.config();

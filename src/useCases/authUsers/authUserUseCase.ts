@@ -4,24 +4,25 @@ import { GenerateToken } from "providers/generateToken";
 
 
 class AuthUserUseCase {
-    private async execute(email: string, password: string): Promise<string> {
-            const userAlreadyExists = await dataBase.user.findFirst({
-                where: {
-                    email: email,
-                }
-            })
+    private async execute(userName: string, password: string): Promise<string> {
+        const userAlreadyExists = await dataBase.user.findFirst({
+            where: {
+                userName: userName,
+            }
+        })
 
-        if(!userAlreadyExists) {
-            throw new Error ("User not exist!");
+        if (!userAlreadyExists) {
+            throw new Error("User not exist!");
         }
 
-        const passwordMatch = compare(password, userAlreadyExists.password);
+        const passwordMatch = await compare(password, userAlreadyExists.password);
 
-        if(!passwordMatch) {
-            throw new Error ("User or password incorrect!");
+        if (!passwordMatch) {
+            throw new Error("User or password incorrect!");
         }
 
         const generateTokenProvider = new GenerateToken(userAlreadyExists.id);
+        console.log({ userId: userAlreadyExists.id })
 
         const token = await generateTokenProvider.generateToken();
 

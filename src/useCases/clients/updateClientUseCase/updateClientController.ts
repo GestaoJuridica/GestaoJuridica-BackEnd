@@ -23,7 +23,7 @@ class UpdatedClientController {
 			}
 
 			const updateClientUseCase = new UpdateClientUseCase();
-			await updateClientUseCase.updatedClient(
+			await updateClientUseCase.updateClient(
 				id,
 				name,
 				cpf,

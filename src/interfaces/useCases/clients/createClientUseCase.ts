@@ -6,8 +6,8 @@ interface CreateClientUseCaseProps {
 		cpf: string,
 		cellNumber: string,
 		logadouro: string,
-		photos?: string,
-		userId?: string
+		photos: string,
+		userId: string
 	) => Promise<unknown>;
 }
 
