@@ -4,7 +4,7 @@ import { CreateClientUseCase } from './createClientUseCase';
 class CreateClientsController {
 	private async createdClients(request: Request, response: Response) {
 		try {
-			
+
 			const { cpf, name, cellNumber, logadouro, photos } = request.body;
 			if (!cpf || !name || !cellNumber || !logadouro || !photos) {
 				response.status(400).send({
@@ -13,14 +13,14 @@ class CreateClientsController {
 				});
 			}
 
-			const createClientsUseCase = new CreateClientUseCase();
-			const client = await createClientsUseCase.createClients(
+			const createClientsUseCase = new CreateClientUseCase({
 				cpf,
 				name,
 				cellNumber,
 				logadouro,
 				photos
-			);
+			});
+			const client = await createClientsUseCase.getCreateClient();
 
 			response.status(201).send({
 				message: 'Client created with sucess',
