@@ -8,3 +8,5 @@ interface UpdateCLientUseCaseProps {
 		photos: string
 	) => Promise<unknown>;
 }
+
+export { UpdateCLientUseCaseProps }

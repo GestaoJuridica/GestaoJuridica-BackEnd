@@ -27,7 +27,7 @@ class GetClientController {
 
 	private async getClient(request: Request, response: Response) {
 		try {
-			const { id } = request.params;
+			const { id } = request.body;
 
 			const getClientUseCase = new GetClientsUseCase();
 			const client = getClientUseCase.getClient(id);

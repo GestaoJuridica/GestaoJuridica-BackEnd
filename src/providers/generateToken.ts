@@ -8,21 +8,19 @@ class GenerateToken {
     }
 
     private async execute(): Promise<string> {
-        const secretKey:string | undefined = process.env.SECRET_KEY
+        const secretKey: string | undefined = process.env.SECRET_KEY
 
         const token = sign({}, String(secretKey), {
-            subject: this.Id,
+            subject: this.userId,
             expiresIn: "1day",
         })
+        console.log({ tokenGenerate: token })
         return token;
+
     };
-    
+
     get generateToken() {
         return this.execute;
-    }
-
-    get Id(): string {
-        return this.userId;
     }
 }
 

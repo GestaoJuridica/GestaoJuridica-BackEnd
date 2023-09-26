@@ -1,15 +1,8 @@
 import { dataBase } from 'dataBase/dataBase';
-import { UpdatedClientUseCaseProps } from 'interfaces/useCases/users/updatedUserUseCase';
+import { UpdateCLientUseCaseProps } from 'interfaces/useCases/clients/updateCLientUseCaseProps'
 
-class UpdateClientUseCase implements UpdatedClientUseCaseProps {
-	public async updatedClient(
-		id: string,
-		name: string,
-		cpf: string,
-		cellNumber: string,
-		logadouro: string,
-		photos?: string
-	): Promise<unknown> {
+class UpdateClientUseCase implements UpdateCLientUseCaseProps {
+	public async updateClient(id: string, name: string, cpf: string, cellNumber: string, logadouro: string, photos: string): Promise<unknown> {
 		const updatedClient = await dataBase.clients.update({
 			where: {
 				id: id,

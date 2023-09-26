@@ -7,27 +7,16 @@ class CreateClientUseCase implements CreateClientUseCaseProps {
 		cpf: string,
 		cellNumber: string,
 		logadouro: string,
-		photos?: string | undefined,
-		userId?: string | undefined
+		photos: string,
 	): Promise<unknown> {
 		const createdClient = await dataBase.clients.create({
 			data: {
-				cellNumber,
-				cpf,
-				logadouro,
-				name,
-				photos: String(photos),
-				userId: String(userId),
-			},
-			select: {
-				photos: true,
-				cellNumber: true,
-				cpf: true,
-				logadouro: true,
-				name: true,
-				id: false,
-				userId: false,
-			},
+				cellNumber: cellNumber,
+				cpf: cpf,
+				logadouro: logadouro,
+				name: name,
+				photos: photos,
+			}
 		});
 
 		return createdClient;

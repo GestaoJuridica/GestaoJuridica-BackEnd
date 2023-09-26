@@ -3,25 +3,23 @@ import { AuthUserUseCase } from './authUserUseCase';
 
 class AuthUserController {
 
-    private async handle(request: Request, response: Response){
+    private async handle(request: Request, response: Response) {
 
-        const { email, password } = request.body;
+        const { userName, password } = request.body;
 
         const authUserUseCase = new AuthUserUseCase();
 
         try {
-            const token = await authUserUseCase.authUser(email, password);
+            const token = await authUserUseCase.authUser(userName, password);
 
             response.status(200).send({
-                Headers: {
-                    token: token
-                },
+                token: token,
                 status: 'success',
             })
         } catch (error) {
             console.log(error);
             response.status(500).send({
-                message: 'Internal Server Error',
+                message: 'Failed to authenticate',
                 status: 'error',
             })
         }
