@@ -12,7 +12,7 @@ dotenv.config();
 const app: Application = express();
 
 app.use(bodyParser.json(), express.json());
-
+app.use(cors())
 //Routes
 app.use(routes);
 

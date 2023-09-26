@@ -14,7 +14,6 @@ class GenerateToken {
             subject: this.userId,
             expiresIn: "1day",
         })
-        console.log({ tokenGenerate: token })
         return token;
 
     };
