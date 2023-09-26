@@ -22,6 +22,7 @@ class AuthUserUseCase {
         }
 
         const generateTokenProvider = new GenerateToken(userAlreadyExists.id);
+        console.log({ userId: userAlreadyExists.id })
 
         const token = await generateTokenProvider.generateToken();
         
