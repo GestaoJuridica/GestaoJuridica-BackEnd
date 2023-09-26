@@ -16,8 +16,7 @@ class AuthUserController {
                 status: 'success',
             })
         } catch (error) {
-            console.log(error);
-            response.status(500).send({
+            response.status(404).send({
                 message: 'Failed to authenticate',
                 status: 'error',
             })
