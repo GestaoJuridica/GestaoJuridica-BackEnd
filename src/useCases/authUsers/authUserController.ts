@@ -5,11 +5,11 @@ class AuthUserController {
 
     private async handle(request: Request, response: Response) {
 
-        const { userName, password } = request.body;
+        const { email, password } = request.body;
 
         const authUserUseCase = new AuthUserUseCase();
         try {
-            const token = await authUserUseCase.authUser(userName, password);
+            const token = await authUserUseCase.authUser(email, password);
 
             response.status(200).send({
                 token: token,
