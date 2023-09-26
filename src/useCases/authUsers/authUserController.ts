@@ -8,7 +8,6 @@ class AuthUserController {
         const { userName, password } = request.body;
 
         const authUserUseCase = new AuthUserUseCase();
-
         try {
             const token = await authUserUseCase.authUser(userName, password);
 
