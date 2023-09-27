@@ -1,36 +1,40 @@
 import { Request, Response } from 'express';
 import { UpdateClientUseCase } from './updateClientUseCase';
+import { Errors } from 'middlewares/errors';
 
 class UpdatedClientController {
 	private async updateClient(request: Request, response: Response) {
 		try {
-			const { id } = request.params;
-
+			const { id } = request.body;
 			const { name, cpf, cellNumber, logadouro, photos } = request.body;
 
 			if (!id) {
-				response.status(400).send({
-					message: 'Id is required',
-					status: 'alert',
-				});
+				Errors({
+					message: "ID is",
+					status: "alert",
+					statusCode: 400,
+					response: response
+				})
 			}
 
 			if (!name || !cpf || !cellNumber || !logadouro || !photos) {
-				response.status(400).send({
-					message: 'All fields are required',
-					status: 'alert',
-				});
+				Errors({
+					message: "All field are required",
+					status: "alert",
+					statusCode: 400,
+					response: response
+				})
 			}
 
-			const updateClientUseCase = new UpdateClientUseCase();
-			await updateClientUseCase.updateClient(
+			const updateClientUseCase = new UpdateClientUseCase({
 				id,
 				name,
 				cpf,
 				cellNumber,
 				logadouro,
 				photos
-			);
+			});
+			await updateClientUseCase.getUpdated();
 
 			response.status(200).send({
 				message: 'Cliet updated',

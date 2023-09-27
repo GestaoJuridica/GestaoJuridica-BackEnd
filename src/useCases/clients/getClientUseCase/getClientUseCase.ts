@@ -1,4 +1,3 @@
-import { Client } from '@prisma/client/runtime/library';
 import { dataBase } from 'dataBase/dataBase';
 import { getClientsUseCaseProps } from 'interfaces/useCases/clients/getClientUseCase';
 
@@ -7,13 +6,11 @@ class GetClientsUseCase implements getClientsUseCaseProps {
 		const allClients = await dataBase.clients.findMany({
 			select: {
 				id: false,
-				userId: false,
-				user: true,
 				cellNumber: true,
 				cpf: true,
 				logadouro: true,
 				name: true,
-				photos: true,
+				photo: true
 			},
 		});
 
@@ -21,23 +18,16 @@ class GetClientsUseCase implements getClientsUseCaseProps {
 	}
 
 	public async getClient(id: string): Promise<unknown> {
-		const getClient = await dataBase.clients.findFirst({
+		const client = await dataBase.clients.findFirst({
 			where: {
-				id: id,
+				id: id
 			},
-			select: {
-				id: false,
-				userId: false,
-				user: true,
-				cellNumber: true,
-				cpf: true,
-				logadouro: true,
-				name: true,
-				photos: true,
-			},
-		});
+			include: {
+				photo: true,
+			}
+		})
 
-		return getClient;
+		return { client: client };
 	}
 }
 

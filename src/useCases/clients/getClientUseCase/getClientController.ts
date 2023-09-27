@@ -1,17 +1,20 @@
 import { Request, Response } from 'express';
 import { GetClientsUseCase } from './getClientUseCase';
+import { Errors } from 'middlewares/errors';
 
 class GetClientController {
 	private async getAllClients(request: Request, response: Response) {
 		try {
 			const getClientUseCase = new GetClientsUseCase();
-			const clients = getClientUseCase.getAllClients();
+			const clients = await getClientUseCase.getAllClients();
 
 			if (!clients) {
-				response.status(400).send({
-					message: 'Clients not found',
-					status: 'alert',
-				});
+				Errors({
+					message: "Client not found",
+					status: "alert",
+					statusCode: 400,
+					response: response
+				})
 			}
 
 			response.status(200).send({
@@ -30,20 +33,24 @@ class GetClientController {
 			const { id } = request.body;
 
 			const getClientUseCase = new GetClientsUseCase();
-			const client = getClientUseCase.getClient(id);
+			const client = await getClientUseCase.getClient(id);
 
 			if (!id) {
-				response.status(400).send({
-					message: 'Id is required',
-					status: 'alert',
-				});
+				Errors({
+					message: "Id is required",
+					status: "alert",
+					statusCode: 400,
+					response: response
+				})
 			}
 
 			if (!client) {
-				response.status(400).send({
-					message: 'Client not found',
-					status: 'alert',
-				});
+				Errors({
+					message: "Client not found",
+					status: "alert",
+					statusCode: 400,
+					response: response
+				})
 			}
 
 			response.status(200).send({
@@ -53,7 +60,7 @@ class GetClientController {
 		} catch (error) {
 			response.status(500).send({
 				status: 'error',
-				message: 'Internal server error',
+				message: 'Failed to return costumers',
 			});
 		}
 	}

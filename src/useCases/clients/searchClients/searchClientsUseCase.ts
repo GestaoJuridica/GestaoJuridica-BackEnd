@@ -11,7 +11,6 @@ class SearchClientsUseCase {
   private skipPagination: number
   private takePagination: number
 
-
   constructor({ userName, logadouro, cpf, courtProcess, skipPagination, takePagination }: SearchClientsUseCaseProps) {
     this.userName = userName;
     this.logadouro = logadouro;

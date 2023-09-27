@@ -9,7 +9,7 @@ interface createUserProps {
 	photos: string,
 }
 
-class CreateClientUseCase{
+class CreateClientUseCase {
 
 	private name: string;
 	private cpf: string;
@@ -23,7 +23,7 @@ class CreateClientUseCase{
 		this.cellNumber = cellNumber;
 		this.logadouro = logadouro;
 		this.photos = photos;
-		
+
 		this.createClients();
 	}
 
@@ -34,16 +34,15 @@ class CreateClientUseCase{
 				cpf: this.cpf,
 				logadouro: this.logadouro,
 				name: this.name,
-				photos: this.photos,
 			}
 		});
 
 		return createdClient;
 	}
 
-	public getCreateClient () {
-		return this.createClients();
-	}
+	// public getCreateClient() {
+	// 	return this.createClients();
+	// }
 }
 
 export { CreateClientUseCase };
