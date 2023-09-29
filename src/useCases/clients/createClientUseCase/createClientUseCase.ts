@@ -5,8 +5,6 @@ interface createUserProps {
 	name: string,
 	cpf: string,
 	cellNumber: string,
-	logadouro: string,
-	photos: string,
 }
 
 class CreateClientUseCase {
@@ -14,15 +12,12 @@ class CreateClientUseCase {
 	private name: string;
 	private cpf: string;
 	private cellNumber: string;
-	private logadouro: string;
-	private photos: string;
 
-	constructor({ name, cpf, cellNumber, logadouro, photos }: createUserProps) {
+
+	constructor({ name, cpf, cellNumber }: createUserProps) {
 		this.name = name;
 		this.cpf = cpf;
 		this.cellNumber = cellNumber;
-		this.logadouro = logadouro;
-		this.photos = photos;
 
 		this.createClients();
 	}
@@ -32,17 +27,12 @@ class CreateClientUseCase {
 			data: {
 				cellNumber: this.cellNumber,
 				cpf: this.cpf,
-				logadouro: this.logadouro,
 				name: this.name,
 			}
 		});
 
 		return createdClient;
 	}
-
-	// public getCreateClient() {
-	// 	return this.createClients();
-	// }
 }
 
 export { CreateClientUseCase };

@@ -30,7 +30,7 @@ class GetClientController {
 
 	private async getClient(request: Request, response: Response) {
 		try {
-			const { id } = request.body;
+			const { id } = request.params;
 
 			const getClientUseCase = new GetClientsUseCase();
 			const client = await getClientUseCase.getClient(id);
