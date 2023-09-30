@@ -8,9 +8,9 @@ import { publicPlaceRouter } from './publicPlaceRouter.router';
 const routes = Router();
 
 routes.get('/', (_, res) => {
-	res.status(200).send({
-		message: 'Gestão Juridica',
-	});
+  res.status(200).send({
+    message: 'Gestão Juridica',
+  });
 });
 
 routes.use('/user', userRoutes);

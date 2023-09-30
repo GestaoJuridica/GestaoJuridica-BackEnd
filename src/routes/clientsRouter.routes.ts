@@ -14,7 +14,7 @@ const getClientController = new GetClientController();
 const deleteClientController = new DeleteClientController();
 const searhClientController = new SearchClientsController();
 
-clientsRouter.get('/:id', getClientController.Client);
+clientsRouter.get('/id', getClientController.Client);
 clientsRouter.get('/allClients', getClientController.AllClients);
 clientsRouter.get('/search', searhClientController.search);
 clientsRouter.post('/createClient', createClientController.createdClient);

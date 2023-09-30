@@ -1,13 +1,13 @@
 import { dataBase } from "dataBase/dataBase"
 
 interface GetPhotoProps {
-  imageId: number;
+  imageId: string;
   clientId: string;
 }
 
 class GetPhotosUseCase {
 
-  private imageId: number;
+  private imageId: string;
   private clientId: string;
 
   constructor({ imageId, clientId }: GetPhotoProps) {
@@ -19,6 +19,13 @@ class GetPhotosUseCase {
     const photo = await dataBase.photo.findFirst({
       where: {
         id: this.imageId
+      },
+      select: {
+        url: true,
+        clientsId: true,
+        createdAt: false,
+        updatedAt: false,
+        id: false
       }
     })
 
@@ -33,7 +40,9 @@ class GetPhotosUseCase {
       select: {
         url: true,
         id: true,
-        Clients: true
+        Clients: true,
+        createdAt: false,
+        updatedAt: false
       }
     })
     return photo

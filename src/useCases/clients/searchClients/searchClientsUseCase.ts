@@ -5,17 +5,13 @@ import { SearchClientsUseCaseProps } from 'interfaces/useCases/clients/searchCli
 class SearchClientsUseCase {
 
   private userName: string
-  private logadouro: string
   private cpf: string
-  private courtProcess: string
   private skipPagination: number
   private takePagination: number
 
-  constructor({ userName, logadouro, cpf, courtProcess, skipPagination, takePagination }: SearchClientsUseCaseProps) {
+  constructor({ userName, cpf, skipPagination, takePagination }: SearchClientsUseCaseProps) {
     this.userName = userName;
-    this.logadouro = logadouro;
     this.cpf = cpf;
-    this.courtProcess = courtProcess;
     this.skipPagination = skipPagination
     this.takePagination = takePagination
   }
@@ -29,14 +25,10 @@ class SearchClientsUseCase {
           cellNumber: true,
           cpf: true,
           id: true,
-          photos: true,
         },
         where: {
           cpf: {
             contains: this.cpf
-          },
-          logadouro: {
-            contains: this.logadouro
           },
           name: {
             contains: this.userName,

@@ -2,16 +2,18 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+  output          = "./generate/"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id String @id @default(uuid())
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   userName String
   password String
@@ -24,8 +26,7 @@ model User {
 }
 
 model Clients {
-  id String @id @default(uuid())
-
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
   name       String
   cpf        String
   cellNumber String
@@ -39,10 +40,10 @@ model Clients {
 }
 
 model Photo {
-  id  Int    @id @default(autoincrement())
+  id  String @id @default(auto()) @map("_id") @db.ObjectId
   url String
 
-  clientsId String?
+  clientsId String?  @db.ObjectId
   Clients   Clients? @relation(fields: [clientsId], references: [id])
 
   createdAt DateTime @default(now())
@@ -52,13 +53,13 @@ model Photo {
 }
 
 model Place {
-  id            Int      @id @default(autoincrement())
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
   cep           String
   neighborhood  String
   road          String
-  numberOfHouse Int
+  numberOfHouse String
   Clients       Clients? @relation(fields: [clientsId], references: [id])
-  clientsId     String?
+  clientsId     String?  @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

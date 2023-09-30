@@ -7,7 +7,5 @@
   "singleQuote": true,
   "bracketSameLine": false,
   "bracketSpacing": true,
-  "arrowParens": "always",
-  "rangeStart": 0,
-  "rangeEnd": null
+  "arrowParens": "always"
 }

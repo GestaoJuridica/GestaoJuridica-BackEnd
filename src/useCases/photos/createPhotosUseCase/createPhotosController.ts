@@ -18,7 +18,9 @@ class CreatePhotosController {
         })
       }
 
-      const createPhotosUseCase = new CreatePhotosUseCase(urlPhoto, clientId);
+      const imagemBase64 = Buffer.from(urlPhoto, 'base64').toString();
+
+      const createPhotosUseCase = new CreatePhotosUseCase(imagemBase64, clientId);
       const photo = await createPhotosUseCase.getCreatePhotos();
 
       return response.status(201).send({
