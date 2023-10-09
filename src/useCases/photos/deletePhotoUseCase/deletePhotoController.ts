@@ -6,7 +6,8 @@ import { Errors } from "middlewares/errors";
 class DeletePhotoController {
   public async handle(request: Request, response: Response) {
     try {
-      const { imageId, clientId } = request.body;
+      const clientId = request.params.id;
+      const { imageId } = request.body;
 
       if (!imageId) {
         Errors({

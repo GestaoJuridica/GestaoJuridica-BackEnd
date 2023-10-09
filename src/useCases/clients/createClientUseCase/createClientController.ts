@@ -6,7 +6,7 @@ class CreateClientsController {
   private async createdClients(request: Request, response: Response) {
     try {
 
-      const { cpf, name, cellNumber } = request.body;
+      const { cpf, name, cellNumber, } = request.body;
       if (!cpf || !name || !cellNumber) {
         Errors({
           message: "All field are required",
@@ -20,6 +20,7 @@ class CreateClientsController {
         cpf,
         name,
         cellNumber,
+        description: ""
       });
 
       response.status(201).send({

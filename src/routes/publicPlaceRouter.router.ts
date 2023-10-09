@@ -9,8 +9,8 @@ const getPublicPlaceController = new GetPublicPlaceController();
 const createPublicPlaceController = new CreatePublicPlaceController();
 const updatedPublicPlaceController = new UpdatedPublicPlaceController();
 
-publicPlaceRouter.get('/', getPublicPlaceController.execute)
+publicPlaceRouter.get('/:id', getPublicPlaceController.execute)
 publicPlaceRouter.post('/create', createPublicPlaceController.execute)
-publicPlaceRouter.put('/updated', updatedPublicPlaceController.execute)
+publicPlaceRouter.put('/updated/:id', updatedPublicPlaceController.execute)
 
 export { publicPlaceRouter }

@@ -5,7 +5,7 @@ class GetClientsUseCase implements getClientsUseCaseProps {
   public async getAllClients(): Promise<unknown[]> {
     const allClients = await dataBase.clients.findMany({
       select: {
-        id: false,
+        id: true,
         cellNumber: true,
         cpf: true,
         name: true,
@@ -32,7 +32,7 @@ class GetClientsUseCase implements getClientsUseCaseProps {
         updatedAt: false,
         photo: true,
         place: true,
-        id: false
+        id: true
       }
     })
 

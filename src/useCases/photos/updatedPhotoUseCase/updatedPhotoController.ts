@@ -6,7 +6,8 @@ class UpdatedPhotoController {
   public async handle(request: Request, response: Response) {
     try {
 
-      const { id, url, clientId } = request.body;
+      const clientId = request.params.id;
+      const { id, url } = request.body;
 
       if (!id || !url) {
         Errors({

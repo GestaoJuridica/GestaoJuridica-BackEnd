@@ -18,11 +18,11 @@ const getPhotoController = new GetPhotoController();
 const uploadPhotosUseCase = new UploadPhotosController();
 
 
-photosRouter.get('/', getPhotoController.handleAllPhoto);
-photosRouter.get('/getPhotoFromId', getPhotoController.handlePhoto);
-photosRouter.post('/createPhoto', createPhotoController.handle);
-photosRouter.post('/upload', uploadImage.array('image', 5), uploadPhotosUseCase.execute);
-photosRouter.put('/updatedPhoto', updatedPhotoController.handle);
-photosRouter.delete('/deletePhoto', deletePhotoController.handle);
+photosRouter.get('/getAllPhotosForCostumer/:id', getPhotoController.handleAllPhoto);
+photosRouter.get('/getPhotoFromId/:id', getPhotoController.handlePhoto);
+photosRouter.post('/createPhoto/:id', createPhotoController.handle);
+photosRouter.post('/upload/:id', uploadImage.array('image', 5), uploadPhotosUseCase.execute);
+photosRouter.put('/updatedPhoto/:id', updatedPhotoController.handle);
+photosRouter.delete('/deletePhoto/:id', deletePhotoController.handle);
 
 export { photosRouter };

@@ -5,7 +5,7 @@ interface UpdatedPublicPlaceUseCaseProps {
   neighborhood: string,
   numberOfHouse: number,
   road: string,
-  clientsId: string,
+  clientId: string,
   id: number;
 }
 
@@ -17,9 +17,9 @@ class UpdatedPublicPlaceUseCase {
   private road: string
   private numberOfHouse: number
 
-  constructor({ cep, clientsId, neighborhood, numberOfHouse, road, id }: UpdatedPublicPlaceUseCaseProps) {
+  constructor({ cep, clientId, neighborhood, numberOfHouse, road, id }: UpdatedPublicPlaceUseCaseProps) {
     this.cep = cep;
-    this.clientsId = clientsId;
+    this.clientsId = clientId;
     this.neighborhood = neighborhood;
     this.numberOfHouse = numberOfHouse;
     this.road = road;

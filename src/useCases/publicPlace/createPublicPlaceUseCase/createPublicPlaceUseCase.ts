@@ -5,20 +5,20 @@ interface CreatePublicPlaceUseCaseProps {
   neighborhood: string,
   numberOfHouse: number,
   road: string,
-  clientsId: string,
+  costumerId: string,
 }
 
 class CreatePublicPlaceUseCase {
 
   private cep: string;
-  private clientsId: string
+  private costumerId: string
   private neighborhood: string
   private road: string
   private numberOfHouse: number
 
-  constructor({ cep, clientsId, neighborhood, numberOfHouse, road }: CreatePublicPlaceUseCaseProps) {
+  constructor({ cep, costumerId, neighborhood, numberOfHouse, road }: CreatePublicPlaceUseCaseProps) {
     this.cep = cep;
-    this.clientsId = clientsId;
+    this.costumerId = costumerId;
     this.neighborhood = neighborhood;
     this.numberOfHouse = numberOfHouse;
     this.road = road;
@@ -32,7 +32,7 @@ class CreatePublicPlaceUseCase {
           neighborhood: this.neighborhood,
           numberOfHouse: this.numberOfHouse,
           road: this.road,
-          clientsId: this.clientsId,
+          clientsId: this.costumerId,
         }
       })
 

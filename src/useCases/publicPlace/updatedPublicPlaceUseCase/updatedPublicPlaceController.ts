@@ -1,14 +1,18 @@
 import { Request, Response } from "express";
 import { UpdatedPublicPlaceUseCase } from "./updatedPublicPlaceUseCase";
 import { Errors } from "middlewares/errors";
+import { z } from "zod";
 
 class UpdatedPublicPlaceController {
   public async execute(request: Request, response: Response) {
     try {
 
-      const { cep, clientsId, neighborhood, numberOfHouse, road, id } = request.body;
+      const costumerIdParse = z.string()
+      const costumerId = costumerIdParse.parse(request.params);
 
-      if (!cep || !clientsId || !neighborhood || !numberOfHouse || !road || !id) {
+      const { cep, neighborhood, numberOfHouse, road, id } = request.body;
+
+      if (!cep || !costumerId || !neighborhood || !numberOfHouse || !road || !id) {
         Errors({
           message: "All fields are required",
           status: "alert",
@@ -17,7 +21,7 @@ class UpdatedPublicPlaceController {
         })
       }
 
-      const updatedPublicPlaceUseCase = new UpdatedPublicPlaceUseCase({ cep, clientsId, neighborhood, numberOfHouse, road, id });
+      const updatedPublicPlaceUseCase = new UpdatedPublicPlaceUseCase({ cep, clientId: costumerId, neighborhood, numberOfHouse, road, id });
 
       return response.status(200).send({
         message: "Updated with sucess",

@@ -7,7 +7,7 @@ class UploadPhotosController {
   public execute(request: Request, response: Response) {
     try {
 
-      const { clientId } = request.body;
+      const clientId = request.params.id;
       const image = request.file?.buffer.toString();
 
       if (!clientId) {

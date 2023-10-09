@@ -1,19 +1,21 @@
 import { Request, Response } from "express";
 import { GetPublicPlaceUseCase } from "./getPublicPlaceUseCase";
+import { z } from "zod";
 
 class GetPublicPlaceController {
   public async execute(request: Request, response: Response) {
     try {
+      const costumerIdParse = z.string()
 
-      const { clientId } = request.body;
+      const costumerId = costumerIdParse.parse(request.params.id);
 
-      const getPublicPlaceUseCase = new GetPublicPlaceUseCase(clientId);
+      const getPublicPlaceUseCase = new GetPublicPlaceUseCase(costumerId);
       const place = await getPublicPlaceUseCase.get();
 
       return response.status(200).send({
         message: "Sucess",
         status: "sucess",
-        CEP: { place }
+        CEP: place
       })
 
     } catch (error) {
